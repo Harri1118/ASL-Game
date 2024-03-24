@@ -14,6 +14,7 @@ from tensorflow.keras.optimizers import Adam , Adamax
 from tensorflow.keras import regularizers
 from tensorflow.keras.applications.xception import preprocess_input
 import keras
+#import Image
 
 base_model = tf.keras.applications.xception.Xception(weights= 'imagenet' ,include_top = False , input_shape = (150,150,3) , pooling = 'max' )
 
@@ -30,9 +31,8 @@ model = Sequential([
 #print(tf.version.VERSION)
 model.load_weights('Model/ASLModel.h5')
 
-def predictImage():
+def predictImage(img_path):
     # Load and preprocess the image
-    img_path = 'Images/capture.jpg'
     img = image.load_img(img_path, target_size=(150, 150))
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
@@ -47,5 +47,8 @@ def predictImage():
     print("Predicted class index:", alphabet[predicted_class_index])
     print("Highest probability:", highest_probability)
     return alphabet[predicted_class_index]
-    
 
+def getRandChar():
+    # get random character from alphabet
+    # return it
+    return ''
